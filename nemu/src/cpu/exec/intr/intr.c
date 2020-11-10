@@ -19,4 +19,8 @@ void raise_intr(uint8_t NO) {
 		cpu.TF=0;	
 	}
 	push(cpu.cs.selector);
+	push(cpu.eip);
+	cpu.cs.selector = gate.selector;
+	Assert(((cpu.cs.selector>>3)<<3) <= cpu.gdtr.seg_limit,"NUMBER EXCEEDED");
+	seg_do(R_CS);
 }
