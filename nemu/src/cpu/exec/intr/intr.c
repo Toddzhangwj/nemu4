@@ -23,4 +23,5 @@ void raise_intr(uint8_t NO) {
 	cpu.cs.selector = gate.selector;
 	Assert(((cpu.cs.selector>>3)<<3) <= cpu.gdtr.seg_limit,"NUMBER EXCEEDED");
 	seg_do(R_CS);
+	cpu.eip=cpu.cs.base_addr+gate.offset1+(gate.offset2<<16);
 }
