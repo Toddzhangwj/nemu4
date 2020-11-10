@@ -45,10 +45,7 @@
 #include "control-trans/jp.h"
 #include "control-trans/jnp.h"
 
-#include "intr/int.h"
-#include "intr/cli.h"
-#include "intr/iret.h"
-#include "intr/hlt.h"
+
 
 #include "io/in.h"
 #include "io/out.h"
