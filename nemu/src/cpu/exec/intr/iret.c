@@ -6,7 +6,11 @@ int pop() {
 	return tmp;
 }
 make_helper(iret) {
-	
+	if(cpu.cr0.protect_enable==0) {
+		cpu.eip=pop();
+		cpu.cs.selector = pop();
+		cpu.eflags = pop();	
+	}
 	
 	return 0;
 	
