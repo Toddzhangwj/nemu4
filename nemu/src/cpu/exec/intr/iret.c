@@ -11,7 +11,14 @@ make_helper(iret) {
 		cpu.cs.selector = pop();
 		cpu.eflags = pop();	
 	}
-	
+	else {
+		
+		cpu.eip=pop();
+		cpu.cs.selector = pop();
+		cpu.eflags = pop();
+		
+		seg_do(R_CS);
+	}	
 	return 0;
 	
 }
