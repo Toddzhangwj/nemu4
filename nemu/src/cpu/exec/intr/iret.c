@@ -5,3 +5,9 @@ int pop() {
 	reg_l(R_ESP)+=4;
 	return tmp;
 }
+make_helper(iret) {
+	
+	
+	return 0;
+	
+}
