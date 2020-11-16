@@ -2,7 +2,10 @@
 #include "nemu.h"
 
 make_helper(hlt) {
-	if(!cpu.INTR) cpu.eip--;
-	print_asm("hlt");
+	extern void device_update(); 
+	if(cpu.INTR == 0){
+		device_update();
+	
+	}
 	return 1;
 }
