@@ -19,3 +19,7 @@ static inline bool check_cc_a() {
 	return !(cpu.CF | cpu.ZF);
 }
 
+static inline bool check_cc_s() {
+	return cpu.SF;
+}
+
