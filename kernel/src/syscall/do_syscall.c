@@ -5,6 +5,7 @@
 void add_irq_handle(int, void (*)(void));
 uint32_t mm_brk(uint32_t);
 int fs_ioctl(int, uint32_t, void *);
+//int fs_write(int, void *, size_t); 
 void serial_printc(char);
 static void sys_brk(TrapFrame *tf) {
 	tf->eax = mm_brk(tf->ebx);
@@ -17,13 +18,14 @@ static void sys_write(TrapFrame *tf) {
 	uint32_t ans = 0;
 	if(fd==1||fd==2) {
 		//set_bp();
-		//asm volatile (".byte 0xd6" :: "a"(2), "c"(buf), "d"(len));	
-		while(len--) serial_printc(*(buf++));	
+		asm volatile (".byte 0xd6" :: "a"(2), "c"(buf), "d"(len));	
+		//while(len--) serial_printc(*(buf++));	
 		ans = tf->edx;
 		//set_bp();
 	}
 	else {
-		//printf("todo\n");	
+		//ans = fs_write(fd, buf, len);
+		ans = 210;
 	}
 	tf->eax = ans;
 }
@@ -54,4 +56,5 @@ void do_syscall(TrapFrame *tf) {
 		default: panic("Unhandled system call: id = %d, eip = 0x%08x", tf->eax, tf->eip);
 	}
 }
+
 
