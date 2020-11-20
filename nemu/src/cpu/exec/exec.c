@@ -106,7 +106,7 @@ helper_fun opcode_table [256] = {
 /* 0x24 */	and_i2a_b, and_i2a_v, inv, inv,
 /* 0x28 */	sub_r2rm_b, sub_r2rm_v, sub_rm2r_b, sub_rm2r_v,
 /* 0x2c */	sub_i2a_b, sub_i2a_v, inv, inv,
-/* 0x30 */	inv, xor_r2rm_v, inv, inv,
+/* 0x30 */	xor_r2rm_b, xor_r2rm_v, inv, inv,
 /* 0x34 */	inv, inv, inv, inv,
 /* 0x38 */	cmp_r2rm_b, cmp_r2rm_v, cmp_rm2r_b, cmp_rm2r_v,
 /* 0x3c */	cmp_i2a_b, cmp_i2a_v, inv, inv,
@@ -145,7 +145,7 @@ helper_fun opcode_table [256] = {
 /* 0xc0 */	group2_i_b, group2_i_v, ret_i_v, ret_1_v,
 /* 0xc4 */	inv, inv, mov_i2rm_b, mov_i2rm_v,
 /* 0xc8 */	inv, leave, inv, inv,
-/* 0xcc */	int3, inv, inv, inv,
+/* 0xcc */	int3, Int, inv, iret,
 /* 0xd0 */	group2_1_b, group2_1_v, group2_cl_b, group2_cl_v,
 /* 0xd4 */	inv, inv, nemu_trap, inv,
 /* 0xd8 */	inv, inv, inv, inv,
@@ -153,10 +153,10 @@ helper_fun opcode_table [256] = {
 /* 0xe0 */	inv, inv, inv, inv,
 /* 0xe4 */	inv, inv, inv, inv,
 /* 0xe8 */      call_i_v, jmp_i_v, ljmp, jmp_i_b,
-/* 0xec */	inb, inl, outb, outl,
+/* 0xec */	in_1_b, in_1_v, out_1_b, out_1_v,
 /* 0xf0 */	inv, inv, repnz, rep,
-/* 0xf4 */	inv, inv, group3_b, group3_v,
-/* 0xf8 */	inv, inv, inv, inv,
+/* 0xf4 */	hlt, inv, group3_b, group3_v,
+/* 0xf8 */	inv, inv, cli, sti,
 /* 0xfc */	cld, std, group4, group5
 };
 
@@ -178,9 +178,9 @@ helper_fun _2byte_opcode_table [256] = {
 /* 0x38 */	inv, inv, inv, inv, 
 /* 0x3c */	inv, inv, inv, inv, 
 /* 0x40 */	inv, inv, inv, inv, 
-/* 0x44 */	inv, inv, inv, inv,
+/* 0x44 */	cmove_v, inv, inv, inv,
 /* 0x48 */	inv, inv, inv, inv, 
-/* 0x4c */	inv, inv, inv, inv, 
+/* 0x4c */	inv, inv, cmovle_v, inv, 
 /* 0x50 */	inv, inv, inv, inv, 
 /* 0x54 */	inv, inv, inv, inv,
 /* 0x58 */	inv, inv, inv, inv, 
@@ -201,7 +201,7 @@ helper_fun _2byte_opcode_table [256] = {
 /* 0x94 */	sete_rm_b, setne_rm_b, inv, inv,
 /* 0x98 */	inv, inv, inv, inv, 
 /* 0x9c */	inv, setge_rm_b, inv, inv, 
-/* 0xa0 */	inv, inv, inv, inv, 
+/* 0xa0 */	inv, inv, inv, bt_r2rm_v, 
 /* 0xa4 */	inv, inv, inv, inv,
 /* 0xa8 */	inv, inv, inv, inv,
 /* 0xac */	shrdi_v, inv, inv, imul_rm2r_v,
@@ -241,3 +241,4 @@ static make_helper(_2byte_esc) {
 	ops_decoded.opcode = opcode | 0x100;
 	return _2byte_opcode_table[opcode](eip) + 1; 
 }
+
