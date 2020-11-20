@@ -11,3 +11,7 @@ static inline bool check_cc_ne() {
 	return !cpu.ZF;
 }
 
+static inline bool check_cc_be() {
+	return cpu.CF | cpu.ZF;
+}
+
