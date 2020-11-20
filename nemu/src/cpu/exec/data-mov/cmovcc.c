@@ -43,3 +43,11 @@ static inline bool check_cc_g() {
 	return !((cpu.SF ^ cpu.OF) | cpu.ZF);
 }
 
+#define DATA_BYTE 2
+#include "cmovcc-template.h"
+#undef DATA_BYTE
+
+#define DATA_BYTE 4
+#include "cmovcc-template.h"
+#undef DATA_BYTE
+
