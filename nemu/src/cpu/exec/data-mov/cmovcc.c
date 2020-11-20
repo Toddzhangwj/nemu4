@@ -31,4 +31,8 @@ static inline bool check_cc_l() {
 	return cpu.SF ^ cpu.OF;
 }
 
+static inline bool check_cc_ge() {
+	return !(cpu.SF ^ cpu.OF);
+}
+
 
