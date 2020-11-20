@@ -39,4 +39,7 @@ static inline bool check_cc_le() {
 	return (cpu.SF ^ cpu.OF) | cpu.ZF;
 }
 
+static inline bool check_cc_g() {
+	return !((cpu.SF ^ cpu.OF) | cpu.ZF);
+}
 
