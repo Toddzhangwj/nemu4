@@ -2,13 +2,13 @@
 #include "cpu/helper.h"
 #include "monitor/watchpoint.h"
 #include <setjmp.h>
-
+#include "cpu/reg.h"
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
  * This is useful when you use the `si' command.
  * You can modify this value as you want.
  */
-#define MAX_INSTR_TO_PRINT 25
+#define MAX_INSTR_TO_PRINT 100
 
 int nemu_state = STOP;
 
