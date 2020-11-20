@@ -23,3 +23,9 @@ static inline bool check_cc_s() {
 	return cpu.SF;
 }
 
+static inline bool check_cc_ns() {
+	return !cpu.SF;
+}
+
+
+
