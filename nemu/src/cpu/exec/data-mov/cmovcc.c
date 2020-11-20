@@ -51,3 +51,5 @@ static inline bool check_cc_g() {
 #include "cmovcc-template.h"
 #undef DATA_BYTE
 
+make_helper_v(cmove)
+make_helper_v(cmovle)
