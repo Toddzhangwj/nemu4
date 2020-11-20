@@ -36,4 +36,6 @@ make_helper(concat(movs_1_,SUFFIX)) {
 	print_asm_template2();	
 	return 1;
 }
+
 #include "cpu/exec/template-end.h"
+
