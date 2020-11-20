@@ -7,5 +7,6 @@
 		print_asm(str(concat(cmov, cc)) str(SUFFIX) " %s,%s", op_src->str, op_dest->str); \
 		return len + 1; \
 	}
-
+make_cmovcc_helper(e)
+make_cmovcc_helper(le)
 #include "cpu/exec/template-end.h"
