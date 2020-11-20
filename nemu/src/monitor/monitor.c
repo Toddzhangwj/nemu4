@@ -44,7 +44,7 @@ void init_monitor(int argc, char *argv[]) {
 	/* Display welcome message. */
 	welcome();
 
-		init_device();
+	init_device();
 
 	init_sdl();
 
