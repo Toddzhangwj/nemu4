@@ -6,3 +6,8 @@ static inline bool check_cc_b() {
 static inline bool check_cc_e() {
 	return cpu.ZF;
 }
+
+static inline bool check_cc_ne() {
+	return !cpu.ZF;
+}
+
